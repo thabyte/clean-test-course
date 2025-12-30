@@ -6,14 +6,13 @@ on:
       - lesson-5
 jobs:
   security_test:
-    needs: [deploy]
+    needs: [ deploy ]
     runs-on: ubuntu-latest
     steps:
-      - name: ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.15.0
+      - name: Dynamic Application Security Scan
+        uses: zaproxy/action-baseline@v0.7.0
         with:
-          target: 'https://hangryhippo.quantic.host'
-          rules_file_name: 'baseline_rules.txt'
+          target: 'http://hangry-web-dev.us-east-1.elasticbeanstalk.com/'
   #  function_test: (commented out to save learner time)
 #    runs-on: ubuntu-latest
 #    defaults:
