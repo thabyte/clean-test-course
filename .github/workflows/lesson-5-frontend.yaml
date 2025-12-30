@@ -5,7 +5,16 @@ on:
     branches:
       - lesson-5
 jobs:
-#  function_test: (commented out to save learner time)
+  security_test:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.15.0
+        with:
+          target: 'https://hangryhippo.quantic.host'
+          rules_file_name: 'baseline_rules.txt'
+  #  function_test: (commented out to save learner time)
 #    runs-on: ubuntu-latest
 #    defaults:
 #      run:
